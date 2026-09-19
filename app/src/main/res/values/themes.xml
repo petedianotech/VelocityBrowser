@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.FastBrowser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/browser_background</item>
+        <item name="android:statusBarColor">@color/browser_surface</item>
+        <item name="android:navigationBarColor">@color/browser_surface</item>
+        <item name="colorPrimary">@color/browser_accent</item>
+        <item name="colorSecondary">@color/browser_accent</item>
+        <item name="colorSurface">@color/browser_surface</item>
+        <item name="android:textColorPrimary">@color/browser_text_primary</item>
+        <item name="android:textColorSecondary">@color/browser_text_secondary</item>
+    </style>
+</resources>

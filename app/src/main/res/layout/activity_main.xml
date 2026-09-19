@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/browser_background"
+    android:fitsSystemWindows="true">
+
+    <!-- Top Loading Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@color/browser_accent"
+        android:progressTint="@color/browser_accent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <!-- Find In Page Bar (Optional/Collapsible) -->
+    <LinearLayout
+        android:id="@+id/layoutFindInPage"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@color/browser_surface"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+        <EditText
+            android:id="@+id/etFindQuery"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_url_bar"
+            android:hint="Find in page…"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/browser_text_primary"
+            android:textColorHint="@color/browser_text_hint"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnFindPrev"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Previous match"
+            android:src="@drawable/ic_arrow_back" />
+
+        <ImageButton
+            android:id="@+id/btnFindNext"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Next match"
+            android:src="@drawable/ic_arrow_forward" />
+
+        <ImageButton
+            android:id="@+id/btnFindClose"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close find bar"
+            android:src="@drawable/ic_close" />
+    </LinearLayout>
+
+    <!-- Swipe Refresh Layout & Main WebView Container -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutFindInPage">
+
+        <FrameLayout
+            android:id="@+id/webViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <WebView
+                android:id="@+id/mainWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/browser_background" />
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Fast Home / Speed Dial Start Page Overlay -->
+    <ScrollView
+        android:id="@+id/startPageContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/browser_background"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutFindInPage">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_browser_logo_1789829945591" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/app_name"
+                android:textColor="@color/browser_text_primary"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="Ultra-Fast • Low RAM • Data Saver Active"
+                android:textColor="@color/browser_accent"
+                android:textSize="12sp" />
+
+            <!-- Speed Dial Shortcuts Grid -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Quick Access"
+                android:textColor="@color/browser_text_secondary"
+                android:textSize="13sp" />
+
+            <GridLayout
+                android:id="@+id/gridShortcuts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="4"
+                android:useDefaultMargins="true" />
+
+            <!-- Saved Bookmarks Header & List -->
+            <TextView
+                android:id="@+id/tvBookmarksHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Saved Bookmarks"
+                android:textColor="@color/browser_text_secondary"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:id="@+id/containerBookmarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Fullscreen Video Container -->
+    <FrameLayout
+        android:id="@+id/fullscreenContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Bottom Navigation Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBottomBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_bottom_bar"
+        android:elevation="8dp"
+        android:paddingHorizontal="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Forward Button -->
+        <ImageButton
+            android:id="@+id/btnForward"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/forward"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- URL and Search Input Field Box -->
+        <LinearLayout
+            android:id="@+id/layoutUrlBox"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bg_url_bar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnTabs"
+            app:layout_constraintStart_toEndOf="@id/btnForward"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivSslStatus"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@string/ssl_secure"
+                android:src="@drawable/ic_lock_secure" />
+
+            <EditText
+                android:id="@+id/etUrlBar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="6dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif"
+                android:hint="@string/search_or_type_url"
+                android:imeOptions="actionGo"
+                android:inputType="textUri|textNoSuggestions"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:textColor="@color/browser_text_primary"
+                android:textColorHint="@color/browser_text_hint"
+                android:textSize="13sp" />
+
+            <ImageButton
+                android:id="@+id/btnUrlAction"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/refresh"
+                android:src="@drawable/ic_refresh" />
+        </LinearLayout>
+
+        <!-- Tabs Count Button -->
+        <TextView
+            android:id="@+id/btnTabs"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/bg_tab_count"
+            android:fontFamily="sans-serif-bold"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/browser_accent"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnHome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Home Button -->
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/home"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnMenu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Menu / More Options Button -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/more_options"
+            android:src="@drawable/ic_more_vert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

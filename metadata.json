@@ -1,0 +1,6 @@
+{
+  "name": "Fast Browser",
+  "description": "An ultra-fast, lightweight Android browser with data-saving, zero-crash state restoration, and multi-tab management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

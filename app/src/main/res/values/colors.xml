@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="browser_background">#121212</color>
+    <color name="browser_surface">#1E1E1E</color>
+    <color name="browser_surface_variant">#2A2A2A</color>
+    <color name="browser_accent">#00E676</color>
+    <color name="browser_accent_dim">#00B0FF</color>
+    <color name="browser_text_primary">#FFFFFF</color>
+    <color name="browser_text_secondary">#9E9E9E</color>
+    <color name="browser_text_hint">#757575</color>
+    <color name="browser_divider">#2C2C2C</color>
+    <color name="browser_error">#CF6679</color>
+    <color name="browser_progress">#00E676</color>
+    <color name="browser_tab_badge_bg">#00E676</color>
+    <color name="browser_tab_badge_text">#121212</color>
+    <color name="browser_icon_tint">#E0E0E0</color>
+    <color name="browser_icon_tint_disabled">#555555</color>
+</resources>
